@@ -30,29 +30,45 @@ public interface Codec<T> extends PrimitiveCodecs, StandardCodecs, PrimitiveArra
     }
 
     default Codec<@Nullable T> nullable() {
+        return this.nullable(OptionalBehavior.NULL);
+    }
+
+    default Codec<@Nullable T> nullable(OptionalBehavior behavior) {
         return new Codec<>() {
             @Override
             public <R> @Nullable T decode(Transcoder<R> transcoder, R value) {
-                return transcoder.isNull(value) ? null : Codec.this.decode(transcoder, value);
+                return value == null || transcoder.isNull(value) ? null : Codec.this.decode(transcoder, value);
             }
 
             @Override
             public <R> R encode(Transcoder<R> transcoder, @Nullable T value) {
-                return value == null ? transcoder.encodeNull() : Codec.this.encode(transcoder, value);
+                if (value == null) {
+                    return behavior == OptionalBehavior.OMIT ? null : transcoder.encodeNull();
+                }
+
+                return Codec.this.encode(transcoder, value);
             }
         };
     }
 
     default Codec<Optional<T>> optional() {
+        return this.optional(OptionalBehavior.NULL);
+    }
+
+    default Codec<Optional<T>> optional(OptionalBehavior behavior) {
         return new Codec<>() {
             @Override
             public <R> Optional<T> decode(Transcoder<R> transcoder, R value) {
-                return transcoder.isNull(value) ? Optional.empty() : Optional.of(Codec.this.decode(transcoder, value));
+                return value == null || transcoder.isNull(value) ? Optional.empty() : Optional.of(Codec.this.decode(transcoder, value));
             }
 
             @Override
             public <R> R encode(Transcoder<R> transcoder, Optional<T> value) {
-                return value.isEmpty() ? transcoder.encodeNull() : Codec.this.encode(transcoder, value.get());
+                if (value.isEmpty()) {
+                    return behavior == OptionalBehavior.OMIT ? null : transcoder.encodeNull();
+                }
+
+                return Codec.this.encode(transcoder, value.get());
             }
         };
     }

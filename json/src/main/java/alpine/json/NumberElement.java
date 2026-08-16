@@ -20,7 +20,7 @@ public final class NumberElement implements Element {
     @Override
     public boolean equals(Object object) {
         return this == object || (object instanceof NumberElement element
-                && element.value == this.value);
+                && Double.compare(element.value, this.value) == 0);
     }
 
     @Override

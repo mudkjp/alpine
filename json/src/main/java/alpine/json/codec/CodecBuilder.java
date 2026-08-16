@@ -25,6 +25,11 @@ public final class CodecBuilder {
 
         public <R> void encodeTo(Transcoder<R> transcoder, T value, Map<String, R> fields) {
             var encoded = codec.encode(transcoder, getter.apply(value));
+
+            if (encoded == null) {
+                return;
+            }
+
             if (key != null) {
                 fields.put(key, encoded);
             } else {

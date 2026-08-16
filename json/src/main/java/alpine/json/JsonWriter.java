@@ -36,7 +36,7 @@ final class JsonWriter {
             throw new IllegalArgumentException("NaN and infinite numbers are not allowed!");
         }
 
-        if (value == Math.rint(value)) {
+        if (value == (long) value) {
             builder.append((long) value);
         } else {
             builder.append(value);
