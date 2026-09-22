@@ -1,4 +1,4 @@
-package alpine.json.codec;
+package alpine.codec;
 
 public record FlatCodec<T>(Codec<T> codec) {
 

@@ -45,7 +45,7 @@ fun Project.applyPublishingSettings() {
 }
 
 subprojects {
-    apply(plugin = "java")
+    apply(plugin = "java-library")
 
     group = "dev.mudkip"
     version = "0.5.1"
@@ -67,7 +67,7 @@ subprojects {
         useJUnitPlatform()
     }
 
-    if (name in setOf("binary", "json")) {
+    if (name in setOf("binary", "json", "codec")) {
         applyPublishingSettings()
     }
 }

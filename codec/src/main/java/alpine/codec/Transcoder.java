@@ -1,13 +1,9 @@
-package alpine.json.codec;
-
-import alpine.json.Element;
+package alpine.codec;
 
 import java.util.List;
 import java.util.Map;
 
 public interface Transcoder<T> {
-    Transcoder<Element> JSON = new JsonTranscoder();
-
     boolean isNull(T value);
 
     T encodeNull();

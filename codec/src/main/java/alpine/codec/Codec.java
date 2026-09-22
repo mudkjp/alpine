@@ -1,4 +1,4 @@
-package alpine.json.codec;
+package alpine.codec;
 
 import org.jetbrains.annotations.Nullable;
 

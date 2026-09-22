@@ -1,4 +1,4 @@
-package alpine.json.codec;
+package alpine.codec;
 
 interface PrimitiveCodecs {
     Codec<Boolean> BOOLEAN = new Codec<>() {

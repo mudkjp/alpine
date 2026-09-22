@@ -1,12 +1,7 @@
-package alpine.json.codec;
+package alpine.json;
 
-import alpine.json.ArrayElement;
-import alpine.json.BooleanElement;
-import alpine.json.Element;
-import alpine.json.NullElement;
-import alpine.json.NumberElement;
-import alpine.json.ObjectElement;
-import alpine.json.StringElement;
+import alpine.codec.DecodingException;
+import alpine.codec.Transcoder;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -14,7 +9,17 @@ import java.util.Map;
 
 import static alpine.json.Element.*;
 
-final class JsonTranscoder implements Transcoder<Element> {
+/**
+ * A {@link Transcoder} which encodes and decodes {@link Element JSON elements}.
+ * @author mudkip
+ */
+public final class JsonTranscoder implements Transcoder<Element> {
+    public static final JsonTranscoder INSTANCE = new JsonTranscoder();
+
+    private JsonTranscoder() {
+
+    }
+
     @Override
     public boolean isNull(Element value) {
         return value instanceof NullElement;

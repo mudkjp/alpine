@@ -1,4 +1,4 @@
-package alpine.json.codec;
+package alpine.codec;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
