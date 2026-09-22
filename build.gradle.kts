@@ -67,7 +67,7 @@ subprojects {
         useJUnitPlatform()
     }
 
-    if (name in setOf("binary", "json", "codec")) {
+    if (name in setOf("binary", "json", "codec", "nbt")) {
         applyPublishingSettings()
     }
 }
