@@ -51,7 +51,7 @@ public final class NbtTranscoder implements Transcoder<Tag> {
         return switch (value) {
             case ByteTag tag -> tag.value();
             case ShortTag tag -> tag.value();
-            case IntTag tag -> tag.value();
+            case IntegerTag tag -> tag.value();
             case LongTag tag -> tag.value();
             case FloatTag tag -> tag.value();
             case DoubleTag tag -> tag.value();

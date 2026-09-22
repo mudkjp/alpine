@@ -5,6 +5,6 @@ package alpine.nbt;
  * @see <a href="https://minecraft.wiki/w/NBT_format">NBT format</a>
  * @author mudkip
  */
-public record IntTag(int value) implements Tag {
+public record IntegerTag(int value) implements Tag {
 
 }

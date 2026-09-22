@@ -51,7 +51,7 @@ public enum TagType {
             case EndTag _ -> END;
             case ByteTag _ -> BYTE;
             case ShortTag _ -> SHORT;
-            case IntTag _ -> INT;
+            case IntegerTag _ -> INT;
             case LongTag _ -> LONG;
             case FloatTag _ -> FLOAT;
             case DoubleTag _ -> DOUBLE;

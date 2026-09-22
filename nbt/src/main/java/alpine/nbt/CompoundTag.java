@@ -80,7 +80,7 @@ public final class CompoundTag implements Tag, Iterable<Map.Entry<String, Tag>> 
     }
 
     public int getInteger(String key, int fallback) {
-        return this.tags.get(key) instanceof IntTag tag ? tag.value() : fallback;
+        return this.tags.get(key) instanceof IntegerTag tag ? tag.value() : fallback;
     }
 
     public long getLong(String key, long fallback) {

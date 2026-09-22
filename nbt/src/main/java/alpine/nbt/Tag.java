@@ -11,7 +11,7 @@ import java.util.Map;
  *     <li>{@code end} — represented by {@link EndTag}</li>
  *     <li>{@code byte} — represented by {@link ByteTag}</li>
  *     <li>{@code short} — represented by {@link ShortTag}</li>
- *     <li>{@code int} — represented by {@link IntTag}</li>
+ *     <li>{@code int} — represented by {@link IntegerTag}</li>
  *     <li>{@code long} — represented by {@link LongTag}</li>
  *     <li>{@code float} — represented by {@link FloatTag}</li>
  *     <li>{@code double} — represented by {@link DoubleTag}</li>
@@ -25,7 +25,7 @@ import java.util.Map;
  * @see <a href="https://minecraft.wiki/w/NBT_format">NBT format</a>
  * @author mudkip
  */
-public sealed interface Tag permits ByteArrayTag, ByteTag, CompoundTag, DoubleTag, EndTag, FloatTag, IntArrayTag, IntTag, ListTag, LongArrayTag, LongTag, ShortTag, StringTag {
+public sealed interface Tag permits ByteArrayTag, ByteTag, CompoundTag, DoubleTag, EndTag, FloatTag, IntArrayTag, IntegerTag, ListTag, LongArrayTag, LongTag, ShortTag, StringTag {
     static EndTag end() {
         return EndTag.INSTANCE;
     }
@@ -38,8 +38,8 @@ public sealed interface Tag permits ByteArrayTag, ByteTag, CompoundTag, DoubleTa
         return new ShortTag(value);
     }
 
-    static IntTag of(int value) {
-        return new IntTag(value);
+    static IntegerTag of(int value) {
+        return new IntegerTag(value);
     }
 
     static LongTag of(long value) {

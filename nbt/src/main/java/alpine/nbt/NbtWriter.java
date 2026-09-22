@@ -46,7 +46,7 @@ final class NbtWriter {
 
             case ByteTag value -> output.writeByte(value.value());
             case ShortTag value -> output.writeShort(value.value());
-            case IntTag value -> output.writeInt(value.value());
+            case IntegerTag value -> output.writeInt(value.value());
             case LongTag value -> output.writeLong(value.value());
             case FloatTag value -> output.writeFloat(value.value());
             case DoubleTag value -> output.writeDouble(value.value());
