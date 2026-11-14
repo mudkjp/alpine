@@ -53,7 +53,8 @@ final class JsonWriter {
             var character = string.charAt(index);
 
             // fast path: safe character
-            if (character != '"' && character != '\\' && !Character.isISOControl(character)) {
+            if (character != '"' && character != '\\' && !Character.isISOControl(character)
+                    && !this.isUnpairedSurrogate(string, index)) {
                 continue;
             }
 
@@ -87,6 +88,18 @@ final class JsonWriter {
         }
 
         builder.append(QUOTE);
+    }
+
+    private boolean isUnpairedSurrogate(String string, int index) {
+        var character = string.charAt(index);
+
+        if (Character.isHighSurrogate(character)) {
+            return index + 1 >= string.length() || !Character.isLowSurrogate(string.charAt(index + 1));
+        } else if (Character.isLowSurrogate(character)) {
+            return index == 0 || !Character.isHighSurrogate(string.charAt(index - 1));
+        } else {
+            return false;
+        }
     }
 
     private void writeIndentation(StringBuilder builder, JsonFormatting formatting, int depth) {

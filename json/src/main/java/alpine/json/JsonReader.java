@@ -223,14 +223,24 @@ final class JsonReader {
                         throw new ParsingException(this.input, "Invalid unicode escape", this.position);
                     }
 
-                    var hex = new String(this.characters, this.position, 4);
+                    var value = 0;
 
-                    try {
-                        builder.append((char) Integer.parseInt(hex, 16));
-                    } catch (NumberFormatException e) {
-                        throw new ParsingException(this.input, "Invalid unicode escape: \\u" + hex, this.position);
+                    for (var offset = 0; offset < 4; offset++) {
+                        var hexCharacter = this.characters[this.position + offset];
+                        var digit = isDigit(hexCharacter) ? hexCharacter - '0'
+                                : hexCharacter >= 'a' && hexCharacter <= 'f' ? hexCharacter - 'a' + 10
+                                : hexCharacter >= 'A' && hexCharacter <= 'F' ? hexCharacter - 'A' + 10
+                                : -1;
+
+                        if (digit < 0) {
+                            var hex = new String(this.characters, this.position, 4);
+                            throw new ParsingException(this.input, "Invalid unicode escape: \\u" + hex, this.position);
+                        }
+
+                        value = (value << 4) | digit;
                     }
 
+                    builder.append((char) value);
                     this.position += 4;
                 } else {
                     builder.append(switch (escapeCharacter) {

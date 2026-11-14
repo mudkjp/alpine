@@ -45,6 +45,23 @@ final class JsonTest {
     }
 
     @Test
+    void testUnicodeEscapes() throws ParsingException {
+        assertEquals(string("A"), Json.read("\"\\u0041\""));
+        assertEquals(string("\u00FF"), Json.read("\"\\u00FF\""));
+        assertThrows(ParsingException.class, () -> Json.read("\"\\u+041\""));
+        assertThrows(ParsingException.class, () -> Json.read("\"\\u-041\""));
+        assertThrows(ParsingException.class, () -> Json.read("\"\\u\u0660\u0660\u0664\u0661\""));
+        assertThrows(ParsingException.class, () -> Json.read("\"\\u\uFF11\uFF12\uFF13\uFF14\""));
+    }
+
+    @Test
+    void testUnpairedSurrogates() {
+        assertEquals("\"\\uD800\"", Json.write(string("\uD800"), JsonFormatting.COMPACT));
+        assertEquals("\"\\uDC00\"", Json.write(string("\uDC00"), JsonFormatting.COMPACT));
+        assertEquals("\"\uD83D\uDE00\"", Json.write(string("\uD83D\uDE00"), JsonFormatting.COMPACT));
+    }
+
+    @Test
     void testArrayAccess() {
         assert array().empty();
         assert array(true).get(0) instanceof BooleanElement;
