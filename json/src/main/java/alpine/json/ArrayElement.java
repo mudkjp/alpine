@@ -23,7 +23,7 @@ public final class ArrayElement implements Element, Iterable<Element> {
     }
 
     ArrayElement(List<Element> elements) {
-        this.elements = elements;
+        this.elements = Collections.unmodifiableList(new ArrayList<>(elements));
     }
 
     @Override

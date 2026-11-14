@@ -25,7 +25,7 @@ public final class ObjectElement implements Element, Iterable<Map.Entry<String, 
     }
 
     ObjectElement(Map<String, Element> elements) {
-        this.elements = elements;
+        this.elements = Collections.unmodifiableMap(new LinkedHashMap<>(elements));
     }
 
     @Override

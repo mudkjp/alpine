@@ -46,7 +46,7 @@ public sealed interface Element permits ArrayElement, BooleanElement, NullElemen
     }
 
     static ArrayElement array(List<Element> elements) {
-        return new ArrayElement(new ArrayList<>(elements));
+        return new ArrayElement(elements);
     }
 
     static ArrayElement array() {
@@ -83,7 +83,7 @@ public sealed interface Element permits ArrayElement, BooleanElement, NullElemen
     }
 
     static ObjectElement object(Map<String, Element> map) {
-        return new ObjectElement(new LinkedHashMap<>(map));
+        return new ObjectElement(map);
     }
 
     static ObjectElement object(Collection<ObjectElement> objects) {
