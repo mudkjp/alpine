@@ -48,7 +48,7 @@ subprojects {
     apply(plugin = "java")
 
     group = "dev.mudkip"
-    version = "0.5.1"
+    version = "0.5.2"
     java.toolchain.languageVersion = JavaLanguageVersion.of(25)
 
     repositories {

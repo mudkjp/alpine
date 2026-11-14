@@ -12,8 +12,8 @@ A binary and JSON serialization library for Java.
 
 ```kts
 dependencies {
-    implementation("dev.mudkip:alpine-binary:0.5.1")
-    implementation("io.netty:netty-buffer:4.2.10.Final")
+    implementation("dev.mudkip:alpine-binary:0.5.2")
+    implementation("io.netty:netty-buffer:4.2.20.Final")
 }
 ```
 
@@ -25,8 +25,8 @@ dependencies {
 
 ```groovy
 dependencies {
-    implementation 'dev.mudkip:alpine-binary:0.5.1'
-    implementation 'io.netty:netty-buffer:4.2.10.Final'
+    implementation 'dev.mudkip:alpine-binary:0.5.2'
+    implementation 'io.netty:netty-buffer:4.2.20.Final'
 }
 ```
 
@@ -40,13 +40,13 @@ dependencies {
 <dependency>
     <groupId>dev.mudkip</groupId>
     <artifactId>alpine-binary</artifactId>
-    <version>0.5.1</version>
+    <version>0.5.2</version>
 </dependency>
 
 <dependency>
     <groupId>io.netty</groupId>
     <artifactId>netty-buffer</artifactId>
-    <version>4.2.10.Final</version>
+    <version>4.2.20.Final</version>
 </dependency>
 ```
 
@@ -60,7 +60,7 @@ dependencies {
 
 ```kts
 dependencies {
-    implementation("dev.mudkip:alpine-json:0.5.1")
+    implementation("dev.mudkip:alpine-json:0.5.2")
 }
 ```
 
@@ -72,7 +72,7 @@ dependencies {
 
 ```groovy
 dependencies {
-    implementation 'dev.mudkip:alpine-json:0.5.1'
+    implementation 'dev.mudkip:alpine-json:0.5.2'
 }
 ```
 
@@ -86,7 +86,7 @@ dependencies {
 <dependency>
     <groupId>dev.mudkip</groupId>
     <artifactId>alpine-json</artifactId>
-    <version>0.5.1</version>
+    <version>0.5.2</version>
 </dependency>
 ```
 
