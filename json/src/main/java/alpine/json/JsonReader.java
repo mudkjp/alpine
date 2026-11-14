@@ -7,7 +7,6 @@ import java.util.LinkedHashMap;
 
 import static alpine.json.Element.*;
 import static alpine.json.Json.*;
-import static java.lang.Character.isDigit;
 
 @ApiStatus.Internal
 final class JsonReader {

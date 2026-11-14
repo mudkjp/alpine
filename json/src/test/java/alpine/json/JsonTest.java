@@ -25,6 +25,25 @@ final class JsonTest {
         }
     }
 
+    static Stream<Arguments> unicodeDigitArguments() {
+        return Stream.of(
+                Arguments.of("Arabic-Indic leading digit", "\u0663", 0, "Unexpected character"),
+                Arguments.of("Arabic-Indic integer digit", "1\u0663", 1, "Invalid character after number!"),
+                Arguments.of("Arabic-Indic fraction digit", "1.\u0663", 2, "Expected digit(s) after the decimal point!"),
+                Arguments.of("Arabic-Indic exponent digit", "1e\u0663", 2, "Expected digit(s) in exponent!"),
+                Arguments.of("Arabic-Indic trailing exponent digit", "1e2\u0663", 3, "Invalid character after number!"),
+                Arguments.of("Fullwidth leading digit", "\uFF15", 0, "Unexpected character"),
+                Arguments.of("Fullwidth integer digit", "1\uFF15", 1, "Invalid character after number!"));
+    }
+
+    @ParameterizedTest(name = "{0}")
+    @MethodSource("unicodeDigitArguments")
+    void testUnicodeDigits(String label, String input, int position, String message) {
+        var exception = assertThrows(ParsingException.class, () -> Json.read(input));
+        assertEquals(position, exception.getPosition());
+        assertTrue(exception.getMessage().startsWith(message));
+    }
+
     @Test
     void testArrayAccess() {
         assert array().empty();

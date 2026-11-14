@@ -81,6 +81,10 @@ public final class Json {
         return character <= 0x1F;
     }
 
+    static boolean isDigit(char character) {
+        return character >= '0' && character <= '9';
+    }
+
     static boolean isWhitespaceCharacter(char character) {
         return character == SPACE
                 || character == TAB
